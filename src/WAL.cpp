@@ -125,7 +125,7 @@ void Server::read_wal()
     std::vector<str> cmd;
     size_t len;
     int lines = 0;
-    int bytes = 0;
+    int bytes = -1;
     size_t offset = 0;
     int fd = open(config.wal_file.c_str(), O_RDONLY);
     str str_buff;
@@ -153,7 +153,7 @@ void Server::read_wal()
             exec_wal(cmd);
             cmd.clear();
             lines = 0;
-            bytes = 0;
+            bytes = -1;
         }
         len = read(fd, buff, BUF_SIZE);
     }
